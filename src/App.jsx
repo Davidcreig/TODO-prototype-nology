@@ -1,16 +1,23 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import Button from "./components/Button/Button"
+import InputTask from "./components/InputTask/InputTask"
+import TaskList from "./containers/TaskList/TaskList"
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [tasks, setTasks] = useState([]);
+
+    const handleReset = () => {
+      
+    }
 
   return (
     <>
       <section id="center">
-        TODO APP
+        <div>MY Todos <Button title="Reset" handlePress={handleReset}/></div>
+        <div><InputTask/></div>
+        <div><TaskList tasks={tasks}/></div>
+        
       </section>
     </>
   )
