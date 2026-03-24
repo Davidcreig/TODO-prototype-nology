@@ -1,0 +1,7 @@
+.tileLayout{
+    display: flex;
+    padding: 5px;
+}
+.tileText {
+    text-decoration: line-through;
+}

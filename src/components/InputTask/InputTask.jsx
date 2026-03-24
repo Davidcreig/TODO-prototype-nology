@@ -1,8 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
+import "./InputTask.css"
 
-const InputTask = () => {
+import plusCircle from "../../assets/plus-circle.png"
+
+const InputTask = ({setTasks}) => {
+
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInput = () => {
+        if(!inputValue.trim()) return
+
+        setTasks(prev => [...prev, inputValue]);
+        setInputValue("");
+    }
+
   return (
-    <div>InputTask</div>
+    <div className='contents'>
+        <input
+        placeholder={"New Task"}
+        value={inputValue}
+        onChange={(e)=>setInputValue(e.target.value)}
+        />
+            <button onClick={handleInput}>+</button>
+            {/* <img className='plusCircle'
+            src={plusCircle}
+            />  */}
+        
+    </div>
+    
   )
 }
 

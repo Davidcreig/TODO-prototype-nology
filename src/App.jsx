@@ -5,18 +5,22 @@ import InputTask from "./components/InputTask/InputTask"
 import TaskList from "./containers/TaskList/TaskList"
 
 function App() {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(["Buy milk","laundry"]);
 
     const handleReset = () => {
-      
+        setTasks([]);
+    }
+
+    const handleDelete = (task) => {
+        setTasks(prev => prev.filter(tasks => tasks !== task ))
     }
 
   return (
     <>
       <section id="center">
-        <div>MY Todos <Button title="Reset" handlePress={handleReset}/></div>
-        <div><InputTask/></div>
-        <div><TaskList tasks={tasks}/></div>
+        <div>My Todos <Button title="Reset" handlePress={handleReset}/></div>
+        <div><InputTask setTasks={setTasks}/></div>
+        <div><TaskList tasks={tasks} handleDelete={handleDelete}/></div>
         
       </section>
     </>
