@@ -1,14 +1,17 @@
+// https://davidcreig.github.io/TODO-prototype-nology/
 import { useState } from 'react'
-import './App.css'
+import styles from'./App.module.css'
+
+
 import Button from "./components/Button/Button"
 import InputTask from "./components/InputTask/InputTask"
 import TaskList from "./containers/TaskList/TaskList"
 
 function App() {
-    const [tasks, setTasks] = useState(["Buy milk","laundry"]);
+    const [tasks, setTasks] = useState(["Buy milk","Do the laundry"]);
 
     const handleReset = () => {
-        setTasks([]);
+        setTasks("");
     }
 
     const handleDelete = (task) => {
@@ -17,9 +20,9 @@ function App() {
 
   return (
     <>
-      <section id="center">
-        <div>My Todos <Button title="Reset" handlePress={handleReset}/></div>
-        <div><InputTask setTasks={setTasks}/></div>
+      <section className = {styles.section} id="center">
+        <div className={styles.title}>My Todos <Button title="Reset" handlePress={handleReset}/></div>
+        <div className={styles.inputTask}><InputTask setTasks={setTasks}/></div>
         <div><TaskList tasks={tasks} handleDelete={handleDelete}/></div>
         
       </section>

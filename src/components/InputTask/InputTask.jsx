@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./InputTask.css"
+import styles from "./InputTask.module.css"
 
 import plusCircle from "../../assets/plus-circle.png"
 
@@ -15,16 +15,18 @@ const InputTask = ({setTasks}) => {
     }
 
   return (
-    <div className='contents'>
+    <div className={styles.contents}>
         <input
-        placeholder={"New Task"}
+        className={styles.inputLayout}
+        placeholder={"Add your task here..."}
         value={inputValue}
         onChange={(e)=>setInputValue(e.target.value)}
-        />
-            <button onClick={handleInput}>+</button>
-            {/* <img className='plusCircle'
+        /><div className={styles.plusCircle}>
+            <img onClick={handleInput} className={styles.plusCircle} alt="Add Task"
             src={plusCircle}
-            />  */}
+            /> 
+
+        </div>
         
     </div>
     
