@@ -1,14 +1,23 @@
 import React from 'react'
 import TaskTile from '../../components/TaskTile/TaskTile'
-
+import styles from "./TaskList.module.css"
 const TaskList = ({tasks, handleDelete}) => {
-   const mappedTasks = tasks.map((task,index)=><TaskTile task={task} handleDelete={handleDelete}/>) 
-  return (
-    <div>
-    {mappedTasks ? mappedTasks : <>Nothing to see here yet... Add a task in the field above!</>}
-    </div>
     
-  )
+    return (
+    <div className={styles.contents}>
+        {tasks.length > 0 ? (
+        tasks.map((task, index) => (
+            <TaskTile
+            key={index}
+            task={task}
+            handleDelete={handleDelete}
+            />
+        ))
+        ) : (
+        <>Nothing to see here yet... Add a task in the field above!</>
+        )}
+    </div>
+    );
 }
 
 export default TaskList
