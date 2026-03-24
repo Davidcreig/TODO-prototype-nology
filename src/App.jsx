@@ -1,5 +1,5 @@
 // https://davidcreig.github.io/TODO-prototype-nology/
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from'./App.module.css'
 
 
@@ -9,6 +9,15 @@ import TaskList from "./containers/TaskList/TaskList"
 
 function App() {
     const [tasks, setTasks] = useState(["Buy milk","Do the laundry"]);
+    const [data, setData] = useState("");
+    const [newPhoto, setNewPhoto] = useState("");
+    
+    const getData = () => {
+      fetch("https://dog.ceo/api/breeds/image/random")
+      .then((res) => res.json())
+      .then(data => setData(data))
+    }
+    useEffect((getData),[newPhoto])
 
     const handleReset = () => {
         setTasks("");
@@ -24,7 +33,8 @@ function App() {
         <div className={styles.title}>My Todos <Button title="Reset" handlePress={handleReset}/></div>
         <div className={styles.inputTask}><InputTask setTasks={setTasks}/></div>
         <div><TaskList tasks={tasks} handleDelete={handleDelete}/></div>
-        
+        <img className={styles.dogImage} src={data.message} alt="A Random Dog"/>
+        <Button title="New Dog" handlePress={()=> setNewPhoto(!newPhoto)}/>
       </section>
     </>
   )
