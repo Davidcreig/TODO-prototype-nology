@@ -8,7 +8,7 @@ const TaskList = ({tasks, handleDelete}) => {
         {tasks.length > 0 ? (
         tasks.map((task) => (
             <TaskTile
-            key={task}
+            key={task.text}
             task={task}
             handleDelete={handleDelete}
             />
