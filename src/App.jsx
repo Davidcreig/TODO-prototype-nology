@@ -1,5 +1,5 @@
 // https://davidcreig.github.io/TODO-prototype-nology/
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import styles from'./App.module.css'
 
 
@@ -8,23 +8,38 @@ import InputTask from "./components/InputTask/InputTask"
 import TaskList from "./containers/TaskList/TaskList"
 
 function App() {
-    const [tasks, setTasks] = useState(["Buy milk","Do the laundry"]);
+    const [tasks, setTasks] = useState("");
     const [data, setData] = useState("");
     const [newPhoto, setNewPhoto] = useState("");
-    
+    useEffect(() => {getData()}, [newPhoto]);
+    useEffect(() => {getTasks()}, []);
+  
+    const getTasks = () => {
+        fetch("http://localhost:3000/tasks", {method: "GET"})
+        .then(res => res.json())
+        .then(data => setTasks(data))
+    }
     const getData = () => {
       fetch("https://dog.ceo/api/breeds/image/random")
       .then((res) => res.json())
       .then(data => setData(data))
     }
-    useEffect((getData),[newPhoto])
 
     const handleReset = () => {
-        setTasks("");
+        fetch("http://localhost:3000/tasks/delete-all", {method: "DELETE"})
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            setTasks(data);
+        })
     }
 
     const handleDelete = (task) => {
-        setTasks(prev => prev.filter(tasks => tasks !== task ))
+        const taskId = tasks.indexOf(task)
+        // console.log(taskId)
+        fetch(`http://localhost:3000/tasks/${taskId}`, { method: "DELETE" })
+        .then(res => res.json())
+        .then(data => setTasks(data))
     }
 
   return (

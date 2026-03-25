@@ -10,7 +10,14 @@ const InputTask = ({setTasks}) => {
     const handleInput = () => {
         if(!inputValue.trim()) return
 
-        setTasks(prev => [...prev, inputValue]);
+        fetch("http://localhost:3000/tasks", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({task: inputValue}),
+        })
+        .then(res => res.json())
+        .then(data => setTasks(data));
+
         setInputValue("");
     }
 

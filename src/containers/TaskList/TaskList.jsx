@@ -6,9 +6,9 @@ const TaskList = ({tasks, handleDelete}) => {
     return (
     <div className={styles.contents}>
         {tasks.length > 0 ? (
-        tasks.map((task, index) => (
+        tasks.map((task) => (
             <TaskTile
-            key={index}
+            key={task}
             task={task}
             handleDelete={handleDelete}
             />
