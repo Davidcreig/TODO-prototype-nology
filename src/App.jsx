@@ -12,12 +12,13 @@ function App() {
     const [data, setData] = useState("");
     const [newPhoto, setNewPhoto] = useState("");
     
+    useEffect(()=>{getData()},[newPhoto])
+    
     const getData = () => {
       fetch("https://dog.ceo/api/breeds/image/random")
       .then((res) => res.json())
       .then(data => setData(data))
     }
-    useEffect((getData),[newPhoto])
 
     const handleReset = () => {
         setTasks("");
