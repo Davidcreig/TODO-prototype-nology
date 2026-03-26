@@ -35,7 +35,7 @@ function App() {
     }
 
     const handleDelete = (task) => {
-        const taskId = tasks.indexOf(task)
+        const taskId = task._id
         // console.log(taskId)
         fetch(`http://localhost:3000/tasks/${taskId}`, { method: "DELETE" })
         .then(res => res.json())

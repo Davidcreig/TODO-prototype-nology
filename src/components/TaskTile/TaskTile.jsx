@@ -10,10 +10,12 @@ const TaskTile = ({task, handleDelete}) => {
     useEffect(()=>{updateChecked()},[taskDone]);
 
     const updateChecked = () =>{
-        fetch('http://localhost:3000/task-done',{
+        // console.log(task)
+        const taskId = task._id;
+        fetch(`http://localhost:3000/task-done/${taskId}`,{
             method: "PATCH",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({checkedTask : {task:task,checked:taskDone}}),
+            body: JSON.stringify({checked:taskDone}),
     })};
 
   return (

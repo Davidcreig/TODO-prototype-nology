@@ -13,7 +13,7 @@ const InputTask = ({setTasks}) => {
         fetch("http://localhost:3000/tasks", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({newTask :{text: inputValue, checked:false}}),
+            body: JSON.stringify({text: inputValue}),
         })
         .then(res => res.json())
         .then(data => setTasks(data));

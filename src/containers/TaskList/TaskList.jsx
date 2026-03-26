@@ -12,7 +12,7 @@ const TaskList = ({tasks, handleDelete}) => {
             task={task}
             handleDelete={handleDelete}
             />
-        ))
+        )).reverse()
         ) : (
         <>Nothing to see here yet... Add a task in the field above!</>
         )}
